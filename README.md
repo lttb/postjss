@@ -30,7 +30,7 @@ postcss: {
 ```js
 plugins: [
   [
-    'jss', {
+    'prejss', {
       postcss: {
         plugins: {
           'postcss-import': {},
@@ -40,9 +40,9 @@ plugins: [
           'postcss-custom-properties': {}
         },
         syntax: 'sugarss'
-      }
-    },
-    extensionsRe: 's[ac]?ss'
+      },
+      extensionsRe: 's[ac]?ss'
+    }
   ]
 ]
 ```

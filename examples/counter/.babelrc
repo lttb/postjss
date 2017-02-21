@@ -1,0 +1,39 @@
+{
+  "presets": [
+    "react",
+    "stage-3"
+  ],
+  "plugins": [
+    "async-to-promises",
+    ["transform-object-rest-spread", { "useBuiltIns": true }],
+    ["babel-root-import", {
+      "rootPathSuffix": "src/client"
+    }],
+    [
+      'prejss', {
+        postcss: {
+          plugins: {
+            'postcss-import': {},
+            'postcss-mixins': {},
+            'postcss-advanced-variables': {},
+            'postcss-custom-selectors': {},
+            'postcss-custom-properties': {}
+          },
+          syntax: 'sugarss'
+        }
+      }
+    ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ],
+    },
+    "server": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
+    }
+  }
+}

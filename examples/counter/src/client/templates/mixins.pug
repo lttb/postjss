@@ -1,0 +1,22 @@
+mixin head(title = 'PreJSS')
+  meta(charset='utf-8')
+  meta(
+    name='viewport'
+    content=`${`
+      width=device-width,
+      height=device-height,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=0
+    `.replace(/[\n\s]/g, '')}`
+  )
+
+  title #{`${title} | example`}
+
+  block
+
+mixin body(html = '')
+  #app
+    != html
+
+  block

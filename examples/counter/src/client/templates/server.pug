@@ -1,0 +1,11 @@
+extends layout
+
+block head
+  +head(title)
+
+block body
+  +body(html)
+    script.
+      window.PRELOADED_STATE = !{JSON.stringify(state)};
+
+    script(src=`/static/app.js`)

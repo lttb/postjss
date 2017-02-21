@@ -1,0 +1,50 @@
+{
+  "name": "babel-plugin-prejss",
+  "version": "0.0.1",
+  "description": "Plugin for preparing sources for JSS by PostCSS",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rm -rf lib/*",
+    "lint": "eslint src",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage",
+    "prebuild": "npm run clean && npm run lint && npm run test:coverage",
+    "build": "babel src --out-dir lib --ignore tests",
+    "preversion": "npm run build",
+    "postversion": "git push --follow-tags"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "repository": "https://github.com/lttb/babel-plugin-prejss.git",
+  "author": "lttb <connect@lttb.net>",
+  "license": "MIT",
+  "dependencies": {
+    "deasync": "^0.1.9",
+    "postcss": "^5.2.14",
+    "postcss-advanced-variables": "^1.2.2",
+    "postcss-custom-properties": "^5.0.2",
+    "postcss-custom-selectors": "^3.0.0",
+    "postcss-import": "^9.1.0",
+    "postcss-js": "^0.3.0",
+    "postcss-mixins": "^5.4.1",
+    "ramda": "^0.23.0",
+    "resolve-from": "^2.0.0",
+    "sugarss": "^0.2.0"
+  },
+  "devDependencies": {
+    "@lttb/eslint-config-default": "https://github.com/lttb/configs#js",
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-stage-3": "^6.22.0",
+    "eslint": "^3.13.0",
+    "jest": "^18.1.0"
+  },
+  "jest": {
+    "rootDir": "src"
+  }
+}

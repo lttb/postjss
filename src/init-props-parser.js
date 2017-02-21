@@ -8,6 +8,9 @@ const propsNameRe = /"--\^([\w-]+):?":/g
 // TODO: for css custom properties, make it better
 const clearRe = /"'(.*?)'"/g
 
+// replace .classname to classname for JSS
+const propsRe = /"\.(.*?)":/g
+
 
 export default params => (props = {}) => JSON.stringify(props)
   .replace(propsValueRe, match =>
@@ -16,3 +19,4 @@ export default params => (props = {}) => JSON.stringify(props)
       .replace(propsValueJSVarRe, `$1${params}.$2$3`))
   .replace(propsNameRe, `[${params}.$1]:`)
   .replace(clearRe, '"$1"')
+  .replace(propsRe, '"$1":')

@@ -21,7 +21,7 @@ export default ({ types: t }) => {
           return
         }
 
-        p.parentPath.replaceWithSourceString(config.processCSS(file.opts.moduleRoot, value))
+        p.parentPath.replaceWithSourceString(config.processCSS(file.opts.filename, value))
 
         p.parentPath.replaceWith(
           t.variableDeclaration('const', [
@@ -45,7 +45,7 @@ export default ({ types: t }) => {
           return
         }
 
-        p.replaceWithSourceString(config.processCSS(file.opts.moduleRoot, value))
+        p.replaceWithSourceString(config.processCSS(file.opts.filename, value))
       },
     },
   }

@@ -8,6 +8,45 @@ This plugin allows to use PostCss features (plugins, parsers etc.) for compiling
 npm i babel-plugin-prejss -D
 ```
 
+## Options
+
+- `postcss` option allows you to set PostCSS syntax and plugins, where key - plugin name, value - plugin options. By default:
+```js
+postcss: {
+  plugins: {
+    'postcss-import': {},
+    'postcss-mixins': {},
+    'postcss-advanced-variables': {},
+    'postcss-custom-selectors': {},
+    'postcss-custom-properties': {}
+  },
+  syntax: 'sugarss'
+}
+```
+- `extensionsRe` - RegExp for extensions. By default `(c|(s[ac]?))ss` - for css, sass, scss, sss
+
+*.babelrc* example:
+
+```js
+plugins: [
+  [
+    'jsss', {
+      postcss: {
+        plugins: {
+          'postcss-import': {},
+          'postcss-mixins': {},
+          'postcss-advanced-variables': {},
+          'postcss-custom-selectors': {},
+          'postcss-custom-properties': {}
+        },
+        syntax: 'sugarss'
+      }
+    },
+    extensionsRe: 's[ac]?ss'
+  ]
+]
+```
+
 ## How it works?
 
 After transpiling imported styles inlined into variable (import name) as a function expression, that accepts an object with arguments and returns a JSS object with styles with arguments usage. Notice that arguments name has uniq scope, so you need not worry about names conflict.

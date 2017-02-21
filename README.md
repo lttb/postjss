@@ -30,7 +30,7 @@ postcss: {
 ```js
 plugins: [
   [
-    'jsss', {
+    'jss', {
       postcss: {
         plugins: {
           'postcss-import': {},

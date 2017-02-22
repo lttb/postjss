@@ -456,9 +456,9 @@ babel-plugin-css-modules-transform@^1.1.0:
     css-modules-require-hook "^4.0.3"
     mkdirp "^0.5.1"
 
-babel-plugin-prejss@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-prejss/-/babel-plugin-prejss-0.0.1.tgz#8193dad2e523e072fc6a00ea5785c839e17f8708"
+babel-plugin-prejss@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-prejss/-/babel-plugin-prejss-0.0.2.tgz#68a75e80bd74509331315d647bb9fbbfb5c75350"
   dependencies:
     deasync "^0.1.9"
     postcss "^5.2.14"
@@ -1119,10 +1119,6 @@ caller-path@^0.1.0:
   resolved "https://registry.yarnpkg.com/caller-path/-/caller-path-0.1.0.tgz#94085ef63581ecd3daa92444a8fe94e82577751f"
   dependencies:
     callsites "^0.2.0"
-
-callsite@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/callsite/-/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
 
 callsites@^0.2.0:
   version "0.2.0"
@@ -1991,7 +1987,7 @@ escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
 
-escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.4, escape-string-regexp@^1.0.5:
+escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
@@ -3006,7 +3002,7 @@ js-tokens@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.1.tgz#08e9f132484a2c45a30907e9dc4d5567b7f114d7"
 
-js-yaml@^3.4.3, js-yaml@^3.5.1, js-yaml@^3.7.0:
+js-yaml@^3.4.3, js-yaml@^3.5.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.8.1.tgz#782ba50200be7b9e5a8537001b7804db3ad02628"
   dependencies:
@@ -3408,7 +3404,7 @@ minimalistic-assert@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/minimalistic-assert/-/minimalistic-assert-1.0.0.tgz#702be2dda6b37f4836bcb3f5db56641b64a1d3d3"
 
-"minimatch@2 || 3", minimatch@3.0.3, minimatch@^3.0.0, minimatch@^3.0.2:
+"minimatch@2 || 3", minimatch@^3.0.0, minimatch@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.3.tgz#2a4e4090b96b2db06a9d7df01055a62a77c9b774"
   dependencies:
@@ -3427,16 +3423,6 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
-
-module-i18n@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/module-i18n/-/module-i18n-0.0.8.tgz#38d0fd2c2bb9418ac596a448bf9c15906ffe4ebd"
-  dependencies:
-    callsite "^1.0.0"
-    js-yaml "^3.7.0"
-    react "^15.4.2"
-    recursive-readdir "^2.1.0"
-    string-replace-async "^1.2.0"
 
 ms@0.7.1:
   version "0.7.1"
@@ -4728,12 +4714,6 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
-recursive-readdir@^2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/recursive-readdir/-/recursive-readdir-2.1.1.tgz#a01cfc7f7f38a53ec096a096f63a50489c3e297c"
-  dependencies:
-    minimatch "3.0.3"
-
 redbox-react@^1.2.5:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/redbox-react/-/redbox-react-1.3.4.tgz#3d882bb62cc7c8f6256279d12f05c6a5a96d24c6"
@@ -5212,13 +5192,6 @@ strict-uri-encode@^1.0.0:
 string-hash@^1.1.0, string-hash@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/string-hash/-/string-hash-1.1.3.tgz#e8aafc0ac1855b4666929ed7dd1275df5d6c811b"
-
-string-replace-async@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/string-replace-async/-/string-replace-async-1.2.0.tgz#0398d1d2d55a9c51c9b0f6a29d5a167e56c18cf1"
-  dependencies:
-    escape-string-regexp "^1.0.4"
-    object-assign "^4.0.1"
 
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"

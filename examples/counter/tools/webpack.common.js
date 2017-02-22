@@ -17,7 +17,6 @@ const rules = ({ PATHS }) => [
     loaders: [
       {
         loader: 'eslint-loader',
-        options: { cache: true },
       },
     ],
   },

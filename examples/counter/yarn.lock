@@ -456,9 +456,9 @@ babel-plugin-css-modules-transform@^1.1.0:
     css-modules-require-hook "^4.0.3"
     mkdirp "^0.5.1"
 
-babel-plugin-prejss@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/babel-plugin-prejss/-/babel-plugin-prejss-0.0.3.tgz#4e4e6360eeb16d98c06202d8458d76352fb7d026"
+babel-plugin-prejss@^0.0.x:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/babel-plugin-prejss/-/babel-plugin-prejss-0.0.4.tgz#6be1e164abcf0ab8c103ebd87f3d0f705bcb62ab"
   dependencies:
     deasync "^0.1.9"
     postcss "^5.2.14"

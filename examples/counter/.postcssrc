@@ -1,8 +1,11 @@
 plugins:
- postcss-import: {}
- postcss-mixins: {}
- postcss-advanced-variables: {}
- postcss-custom-selectors: {}
- postcss-custom-properties: {}
+  stylelint: {}
+  postcss-import: {}
+  postcss-mixins: {}
+  postcss-advanced-variables: {}
+  postcss-custom-selectors: {}
+  postcss-custom-properties: {}
+  postcss-reporter:
+    clearAllMessages: true
 
-parser: css
+parser: sugarss

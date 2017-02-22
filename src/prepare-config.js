@@ -1,4 +1,5 @@
 import R from 'ramda'
+import deasync from 'deasync'
 
 import initCSSProcessor from './init-processor'
 import initStyleGetter from './init-style-getter'
@@ -7,23 +8,13 @@ import requireModule from './utils/require-module'
 
 const init = R.compose(
   initStyleGetter,
-  initCSSProcessor,
-  R.merge({
-    plugins: {
-      'postcss-import': {},
-      'postcss-mixins': {},
-      'postcss-advanced-variables': {},
-      'postcss-custom-selectors': {},
-      'postcss-custom-properties': {},
-    },
-    syntax: 'sugarss',
-  }),
+  deasync(initCSSProcessor),
 )
 
 
-export default ({ postcss, extensionsRe = /^\..*\.(c|(s[ac]?))ss$/ }) => ({
+export default ({ extensionsRe = /\.(c|(s[ac]?))ss$/ }) => ({
   processCSS: R.compose(
-    init(postcss),
+    init(),
     requireModule,
   ),
   extensionsRe: new RegExp(extensionsRe, 'i'),

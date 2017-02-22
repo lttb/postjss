@@ -10,19 +10,8 @@ npm i babel-plugin-prejss -D
 
 ## Options
 
-- `postcss` option allows you to set PostCSS syntax and plugins, where key - plugin name, value - plugin options. By default:
-```js
-postcss: {
-  plugins: {
-    'postcss-import': {},
-    'postcss-mixins': {},
-    'postcss-advanced-variables': {},
-    'postcss-custom-selectors': {},
-    'postcss-custom-properties': {}
-  },
-  syntax: 'sugarss'
-}
-```
+This plugin uses [postcss-load-config](https://github.com/michael-ciniawsky/postcss-load-config), so you need to set **PostCSS options** in `package.json/.postcssrc/postcss.config.js/.postcssrc.js`
+
 - `extensionsRe` - RegExp for extensions. By default `(c|(s[ac]?))ss` - for css, sass, scss, sss
 
 *.babelrc* example:
@@ -31,16 +20,6 @@ postcss: {
 plugins: [
   [
     'prejss', {
-      postcss: {
-        plugins: {
-          'postcss-import': {},
-          'postcss-mixins': {},
-          'postcss-advanced-variables': {},
-          'postcss-custom-selectors': {},
-          'postcss-custom-properties': {}
-        },
-        syntax: 'sugarss'
-      },
       extensionsRe: 's[ac]?ss'
     }
   ]
@@ -216,3 +195,12 @@ const style = function (izezix) {
     }
   };
 }
+```
+
+## Links
+
+* [JSS](https://github.com/cssinjs/jss) - Great lib for CSS in JS
+* [PostCSS](https://github.com/postcss/postcss) - Awesome tool for customizable style transform
+
+# License
+MIT

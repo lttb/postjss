@@ -29,6 +29,7 @@
     "postcss-custom-selectors": "^3.0.0",
     "postcss-import": "^9.1.0",
     "postcss-js": "^0.3.0",
+    "postcss-load-config": "^1.2.0",
     "postcss-mixins": "^5.4.1",
     "ramda": "^0.23.0",
     "resolve-from": "^2.0.0",

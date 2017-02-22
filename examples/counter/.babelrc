@@ -9,20 +9,7 @@
     ["babel-root-import", {
       "rootPathSuffix": "src/client"
     }],
-    [
-      'prejss', {
-        postcss: {
-          plugins: {
-            'postcss-import': {},
-            'postcss-mixins': {},
-            'postcss-advanced-variables': {},
-            'postcss-custom-selectors': {},
-            'postcss-custom-properties': {}
-          },
-          syntax: 'sugarss'
-        }
-      }
-    ]
+    "prejss"
   ],
   "env": {
     "development": {

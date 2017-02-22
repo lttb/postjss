@@ -1,0 +1,8 @@
+plugins:
+ postcss-import: {}
+ postcss-mixins: {}
+ postcss-advanced-variables: {}
+ postcss-custom-selectors: {}
+ postcss-custom-properties: {}
+
+parser: css

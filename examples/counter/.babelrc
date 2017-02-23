@@ -4,12 +4,13 @@
     "stage-3"
   ],
   "plugins": [
+    "prejss",
     "async-to-promises",
     ["transform-object-rest-spread", { "useBuiltIns": true }],
     ["babel-root-import", {
-      "rootPathSuffix": "src/client"
-    }],
-    "prejss"
+      "rootPathSuffix": "src/client",
+      "namespace": "prejss"
+    }]
   ],
   "env": {
     "development": {

@@ -1,0 +1,9 @@
+rules:
+  react/prop-types:
+    - 2
+    - skipUndeclared: true
+      ignore:
+        - classes
+
+globals:
+  prejss: true

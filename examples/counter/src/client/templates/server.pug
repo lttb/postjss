@@ -2,6 +2,8 @@ extends layout
 
 block head
   +head(title)
+    style(type="text/css" id="server-side-styles")
+      != sheets
 
 block body
   +body(html)

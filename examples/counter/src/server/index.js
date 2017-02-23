@@ -9,6 +9,8 @@ import { Provider } from 'react-redux'
 
 import { renderToString } from 'react-dom/server'
 
+import { SheetsRegistryProvider, SheetsRegistry } from 'react-jss'
+
 import rootReducer from '../client/reducers'
 import App from '../client/containers/App'
 
@@ -19,14 +21,21 @@ const handleRender = ({ query, params }, res) => {
   const { counter } = query
 
   const store = createStore(rootReducer, { counter: Number(counter) || 0 })
+  const sheets = new SheetsRegistry()
 
   const html = renderToString(
     <Provider store={store}>
-      <App />
+      <SheetsRegistryProvider registry={sheets}>
+        <App />
+      </SheetsRegistryProvider>
     </Provider>,
   )
 
-  res.send(renderFullPage({ html, state: store.getState() }))
+  res.send(renderFullPage({
+    html,
+    state: store.getState(),
+    sheets: sheets.toString(),
+  }))
 }
 
 ;(async () => {

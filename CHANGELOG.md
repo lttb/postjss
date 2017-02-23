@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.0.5](https://github.com/lttb/babel-plugin-prejss/tree/v0.0.5) (2017-02-23)
+[Full Changelog](https://github.com/lttb/babel-plugin-prejss/compare/v0.0.4...v0.0.5)
+
+**Implemented enhancements:**
+
+- Support TaggedTemplateExpression with configurable  [\#3](https://github.com/lttb/babel-plugin-prejss/issues/3)
+
 ## [v0.0.4](https://github.com/lttb/babel-plugin-prejss/tree/v0.0.4) (2017-02-22)
 [Full Changelog](https://github.com/lttb/babel-plugin-prejss/compare/v0.0.3...v0.0.4)
 

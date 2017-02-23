@@ -3,7 +3,6 @@ import deasync from 'deasync'
 
 import initCSSProcessor from './init-processor'
 import initStyleGetter from './init-style-getter'
-import requireModule from './utils/require-module'
 
 
 const init = R.compose(
@@ -12,10 +11,8 @@ const init = R.compose(
 )
 
 
-export default ({ extensionsRe = /\.(c|(s[ac]?))ss$/ }) => ({
-  processCSS: R.compose(
-    init(),
-    requireModule,
-  ),
+export default ({ extensionsRe = /\.(c|(s[ac]?))ss$/, namespace = 'prejss' }) => ({
+  namespace,
+  processCSS: init(),
   extensionsRe: new RegExp(extensionsRe, 'i'),
 })

@@ -1,8 +1,13 @@
+import R from 'ramda'
+
 import prepareConfig from './prepare-config'
+import requireModule from './utils/require-module'
+import parseTemplateString from './parse-template-string'
 
 
 export default ({ types: t }) => {
   let config
+  let processCSSModule
 
   return {
     pre() {
@@ -11,6 +16,7 @@ export default ({ types: t }) => {
       }
 
       config = prepareConfig(this.opts)
+      processCSSModule = R.compose(config.processCSS, requireModule)
     },
 
     visitor: {
@@ -21,7 +27,9 @@ export default ({ types: t }) => {
           return
         }
 
-        p.parentPath.replaceWithSourceString(config.processCSS(file.opts.filename, value))
+        p.parentPath.replaceWithSourceString(
+          processCSSModule(file.opts.filename, value),
+        )
 
         p.parentPath.replaceWith(
           t.variableDeclaration('const', [
@@ -45,7 +53,28 @@ export default ({ types: t }) => {
           return
         }
 
-        p.replaceWithSourceString(config.processCSS(file.opts.filename, value))
+        p.replaceWithSourceString(
+          processCSSModule(file.opts.filename, value),
+        )
+      },
+
+      TaggedTemplateExpression(p, { file }) {
+        const { tag } = p.node
+
+        if (tag.name !== config.namespace) {
+          return
+        }
+
+        const { quasis, expressions } = p.node.quasi
+        const { code } = p.hub.file
+
+        p.replaceWithSourceString(parseTemplateString({
+          quasis,
+          expressions,
+          code,
+          from: file.opts.filename,
+          processCSS: config.processCSS,
+        }))
       },
     },
   }

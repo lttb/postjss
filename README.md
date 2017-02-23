@@ -13,6 +13,7 @@ npm i babel-plugin-prejss -D
 This plugin uses [postcss-load-config](https://github.com/michael-ciniawsky/postcss-load-config), so you need to set **PostCSS options** in `package.json/.postcssrc/postcss.config.js/.postcssrc.js`
 
 - `extensionsRe` - RegExp for extensions. By default `(c|(s[ac]?))ss` - for css, sass, scss, sss
+- `namespace` - Set your custom namespace for tagged literals. By default its `prejss`
 
 *.babelrc* example:
 
@@ -20,13 +21,52 @@ This plugin uses [postcss-load-config](https://github.com/michael-ciniawsky/post
 plugins: [
   [
     'prejss', {
-      extensionsRe: 's[ac]?ss'
+      extensionsRe: 's[ac]?ss',
+      namespace: 'customPreJssNamespace'
     }
   ]
 ]
 ```
 
 ## How it works?
+
+Please check a [counter example](https://github.com/lttb/babel-plugin-prejss/tree/master/examples/counter)
+
+### As tagged template literal
+
+This plugin transforms tagged literal into the JSS-object by PostCSS, like:
+
+```jsx
+const styles = prejss`
+  .${selector}
+    left: ${() => 0}
+
+    margin-${marginType}: 10px
+
+    transition: ${'opacity'} 1s
+
+    color: ${color}
+`
+```
+
+After transpile it would look like:
+```jsx
+const styles = {
+  [selector]: {
+    left: () => 0,
+    [`margin-${marginType}`]: '10px',
+    transition: 'opacity 1s',
+    color: color
+  }
+}
+```
+
+You are free to use all PostCSS feature and custom `prejss syntax` (see bellow)
+
+> Notice that if you are using `stylelint` and `property-no-unknown` rule, you need to set an option like this (it's required for current prejss parser implementation):
+> `property-no-unknown: [true, { ignoreProperties: ['/\$\^var__/'] }]`
+
+### As a separate styles file
 
 After transpiling imported styles inlined into variable (import name) as a function expression, that accepts an object with arguments and returns a JSS object with styles with arguments usage. Notice that arguments name has uniq scope, so you need not worry about names conflict.
 
@@ -202,5 +242,5 @@ const style = function (izezix) {
 * [JSS](https://github.com/cssinjs/jss) - Great lib for CSS in JS
 * [PostCSS](https://github.com/postcss/postcss) - Awesome tool for customizable style transform
 
-# License
+## License
 MIT

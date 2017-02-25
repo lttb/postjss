@@ -1,28 +1,52 @@
-# babel-plugin-prejss
+# PostJSS
 
-This plugin allows to use PostCss features (plugins, parsers etc.) for compiling to JSS object, so you can take benefits from both.
+This project allows to use PostCSS features (plugins, syntaxes etc.) for compiling to JSS object via babel, so you can take benefits from both.
+
++ [Advantages](#advantages)
++ [Installation](#installation)
++ [Babel Plugin Options](#babel-plugin-options)
++ [How it works?](#how-it-works)
+  - [As tagged template literal](#as-tagged-template-literal)
+  - [As separate styles file](#as-a-separate-styles-file)
++ [Custom PostJSS Syntax](#custom-postjss-syntax)
++ [Hot Module Replacement](#hot-module-replacement)
++ [Linting](#linting)
++ [Rebuild optimization](#rebuild-optimization)
+
+You may also be interested in this project for runtime usage: [jss-from-postcss](https://github.com/axept/jss-from-postcss)
+
+## Advantages
+
+- With PostJSS very easy to start using JSS from SASS/SCSS/PostCSS etc. All you need - update your components and use PostJSS Babel Plugin
+- You can continue use your favorite syntax and the power of PostCSS plugins (stylelint, sort-order etc.), but take advantages of CSS in JS - awesome!
+- You can write styles in styled-components way, css-modules way or in both - the choice is yours
+- You can build your project just with babel
+- Static compilation, no runtime overhead!
+- You can use any library that is compatible with the JSS-object, not only JSS
 
 ## Installation
 
 ```sh
-npm i babel-plugin-prejss -D
+npm i postjss -S
 ```
 
-## Options
+## Babel Plugin Options
 
-This plugin uses [postcss-load-config](https://github.com/michael-ciniawsky/postcss-load-config), so you need to set **PostCSS options** in `package.json/.postcssrc/postcss.config.js/.postcssrc.js`
+This plugin uses [postcss-load-config](https://github.com/michael-ciniawsky/postcss-load-config), so you **need** to set **PostCSS options** in `package.json/.postcssrc/postcss.config.js/.postcssrc.js`
 
-- `extensionsRe` - RegExp for extensions. By default `(c|(s[ac]?))ss` - for css, sass, scss, sss
-- `namespace` - Set your custom namespace for tagged literals. By default its `prejss`
+- `extensionsRe`: `String` - RegExp for extensions. By default `(c|(s[ac]?))ss` - for css, sass, scss, sss
+- `namespace`: `String` - Set your custom namespace for tagged literals. By default its `postjss`
+- `throwError`: `Boolean` - Plugin will throw an error and stop transpiling, if error caused by PostCSS (eg `styleling` errors). By default `false`
 
 *.babelrc* example:
 
 ```js
 plugins: [
   [
-    'prejss', {
+    'postjss/babel', {
       extensionsRe: 's[ac]?ss',
-      namespace: 'customPreJssNamespace'
+      namespace: 'customPostJSSNamespace',
+      throwError: false
     }
   ]
 ]
@@ -30,14 +54,14 @@ plugins: [
 
 ## How it works?
 
-Please check a [counter example](https://github.com/lttb/babel-plugin-prejss/tree/master/examples/counter)
+Please check the [counter example](https://github.com/lttb/postjss/tree/master/examples/counter)
 
 ### As tagged template literal
 
-This plugin transforms tagged literal into the JSS-object by PostCSS, like:
+Babel PostJSS plugin transforms tagged literal into the JSS-object by PostCSS, like:
 
 ```jsx
-const styles = prejss`
+const styles = postjss`
   .${selector}
     left: ${() => 0}
 
@@ -61,9 +85,9 @@ const styles = {
 }
 ```
 
-You are free to use all PostCSS feature and custom `prejss syntax` (see bellow)
+You are free to use all PostCSS feature and custom `postjss syntax` (see bellow)
 
-> Notice that if you are using `stylelint` and `property-no-unknown` rule, you need to set an option like this (it's required for current prejss parser implementation):
+> Notice that if you are using `stylelint` and `property-no-unknown` rule, you need to set an option like this (it's required for current postjss parser implementation):
 > `property-no-unknown: [true, { ignoreProperties: ['/\$\^var__/'] }]`
 
 ### As a separate styles file
@@ -73,7 +97,7 @@ After transpiling imported styles inlined into variable (import name) as a funct
 Say you have this *styles.sss* (with SugarSS i.e.):
 
 ```stylus
-.langList
+.lang-list
   display: flex
 
   margin: 0
@@ -99,13 +123,13 @@ After babel transpiling your component become as:
 const styles = function (izexozk) {
   izexozk = Object.assign({}, izexozk);
   return {
-    ".langList": {
+    "langList": {
       "display": "flex",
       "margin": "0",
       "padding": "0",
       "listStyle": "none"
     },
-    ".lang": {
+    "lang": {
       "marginRight": "10px",
       "padding": "5px",
       "&.current": {
@@ -121,7 +145,7 @@ And you can use this with JSS like:
 injectSheet(style())
 ```
 
-### Syntax
+## Custom PostJSS Syntax
 
 You can use specific syntax for some JSS-features in your CSS:
 - `/JS Code/` - you can place JS-block wrapped by `/` in every property value
@@ -149,7 +173,48 @@ defaults:
   display: none
 ```
 
-### Full Example
+## Hot Module Replacement
+
+For tagged literals HMR supported out of the box. But for separate styles you need to use `postjss hot-loader` with webpack:
+Notice, that you need to set this loader **after** `babel-loader`.
+
+```js
+use: [
+  'babel-loader',
+  'postjss/webpack/hot-loader',
+]
+```
+
+## Linting
+
+You can use [stylelint](https://github.com/stylelint/stylelint) for linting and [postcss-reporter](https://github.com/postcss/postcss-reporter) for warnings and errors.
+So with PostJSS it works like a charm:
+
+### For CSS files:
+
+![sss](https://cloud.githubusercontent.com/assets/11135392/23332790/9ee8325e-fb90-11e6-848d-ce4734814b39.gif)
+
+### For tagged literals:
+
+![postjss](https://cloud.githubusercontent.com/assets/11135392/23332827/1d705f20-fb91-11e6-8b13-146a65cf3ed5.gif)
+
+
+## Rebuild optimization
+
+Let's say you use some tool for linting. But if you set `throwError: true` for `postjss`, it will cause a babel transpilling error, so babel will have to build other files next time, not only fixed.
+
+You can set `throwError: false` for dev building to avoid this, and use `postjss report-loader` for webpack (set this loader **before** `babel-loader`:
+
+```js
+use: [
+  'postjss/webpack/report-loader',
+  'babel-loader',
+]
+```
+
+This will break webpack compiling if there are some errors in PostJSS, but not babel transpiling. And then babel needs to rebuild only fixed file.
+
+## Full Example
 
 *style.sss*
 ```stylus
@@ -202,7 +267,7 @@ const style = function (izezix) {
     "selector": "''"
   }, izezix);
   return {
-    ".app": {
+    "app": {
       "position": "absolute",
       "top": "0",
       "left": "0",
@@ -222,7 +287,7 @@ const style = function (izezix) {
     [izezix.selector]: {
       "display": "none"
     },
-    ".content": {
+    "content": {
       "position": "absolute",
       "margin": "0 auto",
       "&::before": {
@@ -230,7 +295,7 @@ const style = function (izezix) {
       },
       "padding": "20px"
     },
-    ".header": {
+    "header": {
       "borderBottom": "1px solid #eee"
     }
   };

@@ -1,27 +1,26 @@
 {
-  "presets": [
-    "react",
-    "stage-3"
+  presets: [
+    'react',
+    'stage-3',
   ],
-  "plugins": [
-    "prejss",
-    "async-to-promises",
-    ["transform-object-rest-spread", { "useBuiltIns": true }],
-    ["babel-root-import", {
-      "rootPathSuffix": "src/client",
-      "namespace": "prejss"
-    }]
+  plugins: [
+    'postjss/babel',
+    'async-to-promises',
+    ['transform-object-rest-spread', { useBuiltIns: true }],
+    ['babel-root-import', {
+      rootPathSuffix: 'src/client',
+    }],
   ],
-  "env": {
-    "development": {
-      "plugins": [
-        "react-hot-loader/babel"
+  env: {
+    development: {
+      plugins: [
+        'react-hot-loader/babel',
       ],
     },
-    "server": {
-      "plugins": [
-        "transform-es2015-modules-commonjs"
-      ]
-    }
-  }
+    server: {
+      plugins: [
+        'transform-es2015-modules-commonjs',
+      ],
+    },
+  },
 }

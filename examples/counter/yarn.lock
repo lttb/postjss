@@ -456,25 +456,6 @@ babel-plugin-css-modules-transform@^1.1.0:
     css-modules-require-hook "^4.0.3"
     mkdirp "^0.5.1"
 
-babel-plugin-prejss@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/babel-plugin-prejss/-/babel-plugin-prejss-0.0.5.tgz#ff2615a574fdb35292bfdb5ce5a64b5e6e07a48e"
-  dependencies:
-    deasync "^0.1.9"
-    escape-string-regexp "^1.0.5"
-    postcss "^5.2.14"
-    postcss-advanced-variables "^1.2.2"
-    postcss-custom-properties "^5.0.2"
-    postcss-custom-selectors "^3.0.0"
-    postcss-import "^9.1.0"
-    postcss-js "^0.3.0"
-    postcss-load-config "^1.2.0"
-    postcss-mixins "^5.4.1"
-    ramda "^0.23.0"
-    resolve-from "^2.0.0"
-    strip-indent "^2.0.0"
-    sugarss "^0.2.0"
-
 babel-plugin-react-css-modules@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-react-css-modules/-/babel-plugin-react-css-modules-2.2.0.tgz#c2a25fd2e95abfe2435ee34e27957693e5abb5bd"
@@ -4308,6 +4289,25 @@ postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.
     js-base64 "^2.1.9"
     source-map "^0.5.6"
     supports-color "^3.2.3"
+
+postjss@^0.0.5:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/postjss/-/postjss-0.0.1.tgz#c997ab5dad1811e7ecd8b8d637df50bca9a3d71a"
+  dependencies:
+    deasync "^0.1.9"
+    escape-string-regexp "^1.0.5"
+    postcss "^5.2.14"
+    postcss-advanced-variables "^1.2.2"
+    postcss-custom-properties "^5.0.2"
+    postcss-custom-selectors "^3.0.0"
+    postcss-import "^9.1.0"
+    postcss-js "^0.3.0"
+    postcss-load-config "^1.2.0"
+    postcss-mixins "^5.4.1"
+    ramda "^0.23.0"
+    resolve-from "^2.0.0"
+    strip-indent "^2.0.0"
+    sugarss "^0.2.0"
 
 precss@^1.4.0:
   version "1.4.0"

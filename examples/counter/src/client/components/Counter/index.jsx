@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import injectSheet from 'react-jss'
 
 
-const getButtonStyles = ({ color, marginType, selector }) => prejss`
+const getButtonStyles = ({ color, marginType, selector }) => postjss`
   .${selector}
     left: ${() => 0}
 
@@ -26,9 +26,9 @@ const StyledButton = injectSheet(getButtonStyles({
 }))(Button)
 
 
-const counterStyles = prejss`
+const counterStyles = postjss`
   .counter
-    padding: 10px
+    padding: 0
 `
 
 const Counter = ({ classes, counter, actions: { counterIncrement, counterDecrement } }) => (

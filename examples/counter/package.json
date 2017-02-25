@@ -1,10 +1,10 @@
 {
-  "name": "prejss-counter-example",
+  "name": "postjss-counter-example",
   "version": "0.0.1",
-  "description": "Babel Plugin PreJSS counter example",
+  "description": "Counter example for PostJSS",
   "main": "lib/server/index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./tools/webpack.config.dev.js",
+    "start": "webpack-dev-server --config ./tools/webpack.config.dev.js --progress",
     "start:server": "BABEL_ENV=server BABEL_DISABLE_CACHE=1 babel-node src/server",
     "clean:server": "rm -rf lib",
     "clean:client": "rm -rf dist",
@@ -17,6 +17,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "express": "^4.14.1",
+    "postjss": "^0.0.5",
     "pug": "^2.0.0-beta9",
     "ramda": "^0.23.0",
     "react": "^15.4.2",
@@ -33,11 +34,8 @@
     "babel-loader": "^6.2.10",
     "babel-plugin-async-to-promises": "^1.0.5",
     "babel-plugin-css-modules-transform": "^1.1.0",
-    "babel-plugin-prejss": "^0.0.5",
-    "babel-plugin-react-css-modules": "^2.2.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-airbnb": "^2.1.1",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-3": "^6.17.0",
     "babel-root-import": "^4.1.5",

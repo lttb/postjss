@@ -15,9 +15,7 @@ const rules = ({ PATHS }) => [
       PATHS.app,
     ],
     loaders: [
-      {
-        loader: 'eslint-loader',
-      },
+      'eslint-loader',
     ],
   },
   {
@@ -26,9 +24,9 @@ const rules = ({ PATHS }) => [
       PATHS.app,
     ],
     use: [
-      {
-        loader: 'babel-loader',
-      },
+      'postjss/webpack/report-loader',
+      'babel-loader',
+      'postjss/webpack/hot-loader',
     ],
   },
 ]

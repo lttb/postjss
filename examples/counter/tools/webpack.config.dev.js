@@ -22,10 +22,6 @@ const plugins = R.over(R.lensProp('plugins'), R.concat([
   }),
   new HtmlWebpackPlugin({
     inject: true,
-    minify: {
-      preserveLineBreaks: true,
-      collapseWhitespace: true,
-    },
     template: 'src/client/templates/client.pug',
     filename: 'index.html',
   }),
@@ -55,14 +51,9 @@ const rest = R.merge({
   devServer: {
     contentBase: PATHS.app,
     port: PORT,
-    historyApiFallback: true,
     hot: true,
 
-    stats: 'errors-only',
-  },
-
-  performance: {
-    hints: false,
+    stats: true,
   },
 })
 

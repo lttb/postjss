@@ -18,8 +18,6 @@ const plugins = R.over(R.lensProp('plugins'), R.concat([
   }),
 ]))
 
-const rules = R.view(R.lensPath(['module', 'rules']))
-
 const rest = R.merge({
   entry: {
     app: path.join(PATHS.app, 'index.jsx'),
@@ -31,4 +29,4 @@ const rest = R.merge({
 })
 
 
-module.exports = R.compose(rest, plugins, rules)(conf)
+module.exports = R.compose(rest, plugins)(conf)

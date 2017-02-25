@@ -7,5 +7,6 @@ plugins:
   postcss-custom-properties: {}
   postcss-reporter:
     clearAllMessages: true
+    throwError: true
 
 parser: sugarss

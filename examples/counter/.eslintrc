@@ -6,4 +6,4 @@ rules:
         - classes
 
 globals:
-  prejss: true
+  postjss: true

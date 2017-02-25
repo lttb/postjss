@@ -18,10 +18,8 @@ const valEdgePlaceholderRe = new RegExp(`:${EDGE}(.*?)${EDGE}`, 'g')
 const varEdgeRe = /^`\$\{(.*?)\}`$/
 
 
-export default ({ quasis, expressions, code, from, processCSS }) => {
-  const data = stripIndent(quasis
-    .map(quasi => quasi.value.cooked)
-    .join(VAR))
+export default ({ strings, expressions, code, from, processCSS }) => {
+  const data = stripIndent(strings.join(VAR))
 
   // wrap into IIFE
   const css = `(${processCSS({ data, from })})()`

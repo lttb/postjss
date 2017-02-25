@@ -13,7 +13,7 @@ const App = ({ counter, classes, ...actions }) => (
   <div className={classes.app}>
     <section className={classes.content}>
       <header className={classes.header}>
-        <h1>Babel Plugin PreJSS Example</h1>
+        <h1>Babel Plugin PostJSS Example</h1>
       </header>
 
       <main>

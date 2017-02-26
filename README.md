@@ -32,7 +32,9 @@ npm i postjss -S
 
 ## Babel Plugin Options
 
-This plugin uses [postcss-load-config](https://github.com/michael-ciniawsky/postcss-load-config), so you **need** to set **PostCSS options** in `package.json/.postcssrc/postcss.config.js/.postcssrc.js`
+This plugin uses [postcss-load-config](https://github.com/michael-ciniawsky/postcss-load-config), so you **need** to set **PostCSS options** in *package.json/.postcssrc/postcss.config.js/.postcssrc.js*
+
+Plugin Options:
 
 - `extensionsRe`: `String` - RegExp for extensions. By default `(c|(s[ac]?))ss` - for css, sass, scss, sss
 - `namespace`: `String` - Set your custom namespace for tagged literals. By default its `postjss`

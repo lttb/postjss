@@ -15,7 +15,7 @@ export default function (source) {
       const messageIndex = message.indexOf(this.resource)
 
       if (messageIndex) {
-        this.emitError(message.slice(messageIndex + this.resource.length))
+        this.emitError(message.slice(messageIndex + this.resource.length).trim())
         delete messages[index]
       }
     } else {

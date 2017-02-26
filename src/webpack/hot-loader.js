@@ -2,7 +2,7 @@ import path from 'path'
 import resolveFrom from 'resolve-from'
 
 
-const preapreRe = ({ extensions = '(c|(s[ac]?))ss' }) => {
+export const prepareRe = ({ extensions = '(c|(s[ac]?))ss' } = {}) => {
   const filename = `[\`'"](.*?\\.${extensions})`
 
   return {
@@ -11,23 +11,29 @@ const preapreRe = ({ extensions = '(c|(s[ac]?))ss' }) => {
   }
 }
 
-let cache
+export const initPrepareFiles = (options) => {
+  const { importRe, filenameRe } = prepareRe(options)
+
+  return source => (source.match(importRe) || [])
+    .map(file => file.match(filenameRe)[1])
+}
+
+
+let prepareFiles
 
 
 export default function (source) {
   this.cacheable()
 
-  if (!cache) {
-    cache = preapreRe(this.query)
+  if (!prepareFiles) {
+    prepareFiles = initPrepareFiles(this.query)
   }
-
-  const { importRe, filenameRe } = cache
 
   const getStylesPath = filepath =>
     resolveFrom(path.dirname(this.resource), filepath)
 
-  ;(source.match(importRe) || [])
-    .map(file => getStylesPath(file.match(filenameRe)[1]))
+  prepareFiles(source)
+    .map(getStylesPath)
     .filter(Boolean)
     .forEach(this.dependency)
 

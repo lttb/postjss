@@ -1,1 +1,4 @@
 extends: '@lttb/default'
+
+env:
+  jest: true

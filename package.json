@@ -37,9 +37,10 @@
     "babel-preset-stage-3": "^6.22.0",
     "copyfiles": "^1.2.0",
     "eslint": "^3.13.0",
-    "jest": "^18.1.0"
+    "jest": "^18.1.0",
+    "js-combinatorics": "^0.5.2"
   },
   "jest": {
-    "rootDir": "src"
+    "rootDir": "tests"
   }
 }

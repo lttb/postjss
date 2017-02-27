@@ -18,7 +18,7 @@ const valEdgePlaceholderRe = new RegExp(`:${EDGE}(.*?)${EDGE}`, 'g')
 const varEdgeRe = /^`\$\{(.*?)\}`$/
 
 
-export default ({ strings, expressions, code, from, processCSS }) => {
+export default ({ strings, values, from, processCSS }) => {
   const data = stripIndent(strings.join(VAR))
 
   // wrap into IIFE
@@ -30,12 +30,10 @@ export default ({ strings, expressions, code, from, processCSS }) => {
     .replace(placeholderPropRe, '[`$1`]:')
     .replace(placeholderValRe, `:${EDGE}\`$1\`${EDGE}`)
     .replace(placeholderRe, (match, left, right) => {
-      const expr = expressions[index]
+      const value = values[index]
       index += 1
 
-      const body = code.slice(expr.start, expr.end)
-
-      return left || right ? `${left}$\{${body}}${right}` : body
+      return left || right ? `${left}$\{${value}}${right}` : value
     })
     .replace(valEdgePlaceholderRe, (match, val) => `:${val.replace(varEdgeRe, '$1')}`)
 }

@@ -93,12 +93,12 @@ export default ({ types: t }) => {
         let res = '{}'
 
         const strings = quasis.map(quasi => quasi.value.cooked)
+        const values = expressions.map(({ start, end }) => code.slice(start, end))
 
         try {
           res = parseTemplateString({
+            values,
             strings,
-            expressions,
-            code,
             from: filename,
             processCSS: config.processCSS,
           })

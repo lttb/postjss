@@ -25,7 +25,7 @@ export default ({
   extensionsRe = /\.(c|(s[ac]?))ss$/,
   namespace = 'postjss',
   throwError = false,
-}) => ({
+} = {}) => ({
   namespace,
   throwError,
   processCSS,

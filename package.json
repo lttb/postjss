@@ -1,6 +1,6 @@
 {
   "name": "postjss",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Use PostCSS with JSS",
   "scripts": {
     "clean": "rm -rf lib/*",

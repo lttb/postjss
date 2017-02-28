@@ -1,5 +1,6 @@
 import postjss from '~/runtime'
 
+
 describe('PostJSS runtime', () => {
   it('simple test', () => {
     const test = 5

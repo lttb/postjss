@@ -8,7 +8,7 @@
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage",
-    "prebuild": "npm run clean && npm run lint && npm test",
+    "prebuild": "npm run clean && npm run test:coverage && npm run lint",
     "build": "babel src --out-dir lib --ignore tests && copyfiles ./*.* -a -f lib",
     "preversion": "npm run build",
     "postversion": "git push --follow-tags && npm publish"

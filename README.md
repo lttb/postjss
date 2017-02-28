@@ -12,8 +12,7 @@ This project allows to use PostCSS features (plugins, syntaxes etc.) for compili
 + [Hot Module Replacement](#hot-module-replacement)
 + [Linting](#linting)
 + [Rebuild optimization](#rebuild-optimization)
-
-You may also be interested in this project for runtime usage: [jss-from-postcss](https://github.com/axept/jss-from-postcss)
++ [Runtime Usage](#runtime)
 
 ## Advantages
 
@@ -29,6 +28,7 @@ You may also be interested in this project for runtime usage: [jss-from-postcss]
 ```sh
 npm i postjss -S
 ```
+
 
 ## Babel Plugin Options
 
@@ -215,6 +215,29 @@ use: [
 ```
 
 This will break webpack compiling if there are some errors in PostJSS, but not babel transpiling. And then babel needs to rebuild only fixed file.
+
+## Runtime
+
+You can use this module in runtime without babel-plugin.
+There some limitations now:
+- it works just on node.js
+- it has synchronously initialisation and styles processing
+- and it may cause some performance issues
+
+So I recommend this usage only for tests and first steps :)
+
+```jsx
+import postjss from 'postjss'
+
+console.log(postjss`
+  .app
+    color: red
+`)
+
+// output: { app: { color: 'red' } }
+```
+
+You may also be interested in this project for runtime usage: [jss-from-postcss](https://github.com/axept/jss-from-postcss)
 
 ## Full Example
 

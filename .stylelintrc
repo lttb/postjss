@@ -1,0 +1,7 @@
+extends: '@lttb/configs.style'
+
+rules:
+  property-no-unknown:
+    - true
+    - ignoreProperties:
+      - /\$\^var__/

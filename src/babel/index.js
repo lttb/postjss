@@ -1,4 +1,5 @@
 import R from 'ramda'
+import template from 'babel-template'
 
 import prepareConfig from './prepare-config'
 import parseTemplateString from './parse-template-string'
@@ -6,6 +7,20 @@ import parseTemplateString from './parse-template-string'
 import Logger from './utils/logger'
 import requireModule from './utils/require-module'
 import getIndentNumber from './utils/get-indent-number'
+
+import initPropsParser from './init-props-parser'
+
+import getUniqHash from './utils/get-uniq-hash'
+
+
+const argsName = getUniqHash()
+const parseProps = initPropsParser(argsName)
+
+const functionTemplate = template(`(function (${argsName} = {}) {
+  ${argsName} = Object.assign(defaults, ${argsName});
+
+  return styles;
+});`)
 
 
 export default ({ types: t }) => {
@@ -20,10 +35,15 @@ export default ({ types: t }) => {
       }
 
       config = prepareConfig(this.opts)
-      processCSSModule = R.compose(config.processCSS, requireModule)
+      processCSSModule = R.compose(
+        functionTemplate,
+        parseProps,
+        config.processCSS,
+        requireModule,
+      )
 
       requireCSSModule = (filename, value) => {
-        let res = '() => {}'
+        let res = t.arrayExpression()
 
         try {
           res = processCSSModule(filename, value)
@@ -49,7 +69,7 @@ export default ({ types: t }) => {
 
         const filename = file.opts.filename
 
-        p.parentPath.replaceWithSourceString(requireCSSModule(filename, value))
+        p.parentPath.replaceWith(requireCSSModule(filename, value))
 
         p.parentPath.replaceWith(
           t.variableDeclaration('const', [
@@ -75,7 +95,7 @@ export default ({ types: t }) => {
 
         const filename = file.opts.filename
 
-        p.replaceWithSourceString(requireCSSModule(filename, value))
+        p.replaceWith(requireCSSModule(filename, value))
       },
 
       TaggedTemplateExpression(p, { file }) {
@@ -90,18 +110,22 @@ export default ({ types: t }) => {
         const { quasis, expressions } = p.node.quasi
         const { code } = p.hub.file
 
-        let res = '{}'
+        let res = t.ObjectExpression([])
 
         const strings = quasis.map(quasi => quasi.value.cooked)
-        const values = expressions.map(({ start, end }) => code.slice(start, end))
+
+        // match JS like PostJSS Code
+        const values = expressions.map(({ start, end }) => `/${code.slice(start, end)}/`)
 
         try {
-          res = parseTemplateString({
-            values,
+          const styles = parseTemplateString({
             strings,
+            values,
             from: filename,
             processCSS: config.processCSS,
           })
+
+          res = parseProps({ styles }).styles
         } catch (e) {
           if (config.throwError) {
             throw e
@@ -120,7 +144,7 @@ export default ({ types: t }) => {
           }
         }
 
-        p.replaceWithSourceString(res)
+        p.replaceWith(res)
       },
     },
   }

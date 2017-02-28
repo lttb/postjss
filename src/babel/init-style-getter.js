@@ -2,10 +2,7 @@ import deasync from 'deasync'
 
 import LogCatcher from '~/common/utils/log-catcher'
 
-import initPropsParser from './init-props-parser'
-
 import PostJSSError from './utils/postjss-error'
-import getUniqHash from './utils/get-uniq-hash'
 
 
 export default parseStyles => (params) => {
@@ -25,11 +22,5 @@ export default parseStyles => (params) => {
 
   const { 'defaults:': defaults, ...styles } = parsedStyles
 
-  const argsName = getUniqHash()
-  const parseProps = initPropsParser(argsName)
-
-  return `(${argsName}) => {
-    ${argsName} = Object.assign(${parseProps(defaults)}, ${argsName});
-    return ${parseProps(styles)}
-  }`
+  return { styles, defaults }
 }

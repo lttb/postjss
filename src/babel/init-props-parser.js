@@ -1,22 +1,56 @@
-const propsValueRe = /"[\w-]+":"\/(.*?)\/"/g
-
-const propsValueJSRe = /"\/(.*?)\/"/g
-const propsValueJSVarRe = /(.*?)\^(\w+)(.*?)/g
-
-const propsNameRe = /"--\^([\w-]+):?":/g
-
-// TODO: for css custom properties, make it better
-const clearRe = /"'(.*?)'"/g
-
-// replace .classname to classname for JSS
-const propsRe = /"\.(.*?)":/g
+import * as t from 'babel-types'
 
 
-export default params => (props = {}) => JSON.stringify(props)
-  .replace(propsValueRe, match =>
-    match
-      .replace(propsValueJSRe, '$1')
-      .replace(propsValueJSVarRe, `$1${params}.$2$3`))
-  .replace(propsNameRe, `[${params}.$1]:`)
-  .replace(clearRe, '"$1"')
-  .replace(propsRe, '"$1":')
+const propsValueJSRe = /\/.*?\//
+const propsValueJSVarRe = /(.*?)\^(\w+)(.*?)/
+
+const propsNameRe = /--\^([\w-]+)/
+
+
+export default (argsName) => {
+  const getKey = (key) => {
+    const [match] = (key.match(propsValueJSRe) || [])
+    if (match) {
+      const res = match.slice(1, -1).replace(propsValueJSVarRe, `$1${argsName}.$2$3`)
+
+      return t.identifier(res)
+    }
+
+    const [, prop] = (key.match(propsNameRe) || [])
+
+    if (!prop) {
+      return t.StringLiteral(key)
+    }
+
+    return t.memberExpression(t.identifier(argsName), prop)
+  }
+
+  const getVal = (val) => {
+    const [match] = (val.match(propsValueJSRe) || [])
+
+    if (!match) {
+      return t.StringLiteral(val)
+    }
+
+    const res = match.slice(1, -1).replace(propsValueJSVarRe, `$1${argsName}.$2$3`)
+
+    return t.identifier(res)
+  }
+
+  const transform = css => t.ObjectExpression(Object.entries(css)
+    .map(([key, value]) => {
+      const prop = getKey(key.replace(/^\./, ''))
+
+      const val = typeof value === 'object'
+        ? transform(value)
+        : getVal(value)
+
+      return t.objectProperty(prop, val, !t.isStringLiteral(prop))
+    }))
+
+
+  return ({ styles, defaults = {} }) => ({
+    styles: transform(styles),
+    defaults: transform(defaults),
+  })
+}

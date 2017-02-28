@@ -4,37 +4,44 @@ import escapeStringRegexp from 'escape-string-regexp'
 import getUniqHash from './utils/get-uniq-hash'
 
 
-const EDGE = `__EDGE__${getUniqHash()}`
-
 const VAR = `$^var__${getUniqHash()}`
 const VAR_ESCAPED = escapeStringRegexp(VAR)
 
 const placeholderRe = new RegExp(`:?(.*?)${VAR_ESCAPED}(.*?):?`, 'g')
 
-const placeholderPropRe = new RegExp(`"([^"]*${VAR_ESCAPED}[^"]*)":`, 'g')
-const placeholderValRe = new RegExp(`:"([^"]*${VAR_ESCAPED}[^"]*)"`, 'g')
-
-const valEdgePlaceholderRe = new RegExp(`:${EDGE}(.*?)${EDGE}`, 'g')
-const varEdgeRe = /^`\$\{(.*?)\}`$/
-
 
 export default ({ strings, values, from, processCSS }) => {
-  const data = stripIndent(strings.join(VAR))
+  const data = stripIndent(strings.join(VAR)).trim().concat('\n')
 
-  // wrap into IIFE
-  const css = `(${processCSS({ data, from })})()`
+  const { styles } = processCSS({ data, from })
 
   let index = 0
 
-  return css
-    .replace(placeholderPropRe, '[`$1`]:')
-    .replace(placeholderValRe, `:${EDGE}\`$1\`${EDGE}`)
-    .replace(placeholderRe, (match, left, right) => {
-      const value = values[index]
-      index += 1
+  const getVal = (val) => {
+    const [match, left, right] = (val.match(placeholderRe) || [])
 
-      return left || right ? `${left}$\{${value}}${right}` : value
-    })
-    .replace(valEdgePlaceholderRe, (match, val) => `:${val.replace(varEdgeRe, '$1')}`)
+    if (!match) {
+      return val
+    }
+
+    const body = values[index]
+    index += 1
+
+    return (left || right) && typeof body !== 'function'
+      ? left + body + right
+      : body
+  }
+
+  const transform = css => Object.entries(css)
+    .reduce((acc, [key, value]) => {
+      const prop = getVal(key.replace(/^\./, ''))
+
+      const val = typeof value === 'object'
+        ? transform(value)
+        : getVal(value)
+
+      return { ...acc, [prop]: val }
+    }, {})
+
+  return transform(styles)
 }
-

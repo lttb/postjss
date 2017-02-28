@@ -11,7 +11,7 @@ describe('PostJSS report-loader', () => {
     expect(loader).toBeInstanceOf(Function)
   })
 
-  it('should be a function', () => {
+  it('should be capture messages and errors', () => {
     const errors = []
 
     const ModuleMock = {

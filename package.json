@@ -18,6 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "babel-root-import": "^4.1.8",
+    "babel-template": "^6.23.0",
+    "babel-types": "^6.23.0",
     "deasync": "^0.1.9",
     "escape-string-regexp": "^1.0.5",
     "postcss": "^5.2.14",
@@ -29,6 +31,7 @@
     "sugarss": "^0.2.0"
   },
   "devDependencies": {
+    "@lttb/configs.style": "lttb/configs#style",
     "@lttb/eslint-config-default": "https://github.com/lttb/configs#js",
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
@@ -38,9 +41,16 @@
     "copyfiles": "^1.2.0",
     "eslint": "^3.13.0",
     "jest": "^18.1.0",
-    "js-combinatorics": "^0.5.2"
+    "js-combinatorics": "^0.5.2",
+    "postcss-advanced-variables": "^1.2.2",
+    "postcss-custom-properties": "^5.0.2",
+    "postcss-custom-selectors": "^3.0.0",
+    "postcss-import": "^9.1.0",
+    "postcss-mixins": "^5.4.1",
+    "postcss-reporter": "^3.0.0",
+    "stylelint": "^7.9.0"
   },
   "jest": {
-    "rootDir": "tests"
+    "rootDir": "src"
   }
 }

@@ -240,7 +240,7 @@ console.log(postjss`
 
 Async version:
 ```jsx
-import { postjssAsync } from 'postjss'
+import postjssAsync from 'postjss/runtime/async'
 
 ;(async () => {
   const postjss = await postjssAsync

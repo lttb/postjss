@@ -10,10 +10,10 @@ const VAR_ESCAPED = escapeStringRegexp(VAR)
 const placeholderRe = new RegExp(`:?(.*?)${VAR_ESCAPED}(.*?):?`, 'g')
 
 
-export default ({ strings, values, from, processCSS }) => {
+export default async ({ strings, values, from, processCSS }) => {
   const data = stripIndent(strings.join(VAR)).trim().concat('\n')
 
-  const { styles } = processCSS({ data, from })
+  const { styles } = await processCSS({ data, from })
 
   let index = 0
 

@@ -1,6 +1,7 @@
 {
   plugins: [
     'transform-es2015-modules-commonjs',
+    'transform-async-to-generator',
     ['transform-object-rest-spread', { useBuiltIns: true }],
     ['babel-root-import', {
       rootPathSuffix: 'src'

@@ -1,23 +1,27 @@
-import postjss from '~/runtime'
+import { postjssAsync } from '~/runtime'
 
 
 describe('PostJSS runtime', () => {
-  it('simple test', () => {
+  it('simple test', async () => {
+    const postjss = await postjssAsync
+
     const test = 5
 
     const left = () => test + 10
 
-    const styles = postjss`
+    const styles = await postjss`
       .app
         position: absolute
         left: ${left}
     `
 
-    expect(styles).toEqual({
+    const expected = {
       app: {
         left,
         position: 'absolute',
       },
-    })
+    }
+
+    expect(styles).toEqual(expected)
   })
 })

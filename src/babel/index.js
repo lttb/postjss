@@ -2,7 +2,6 @@ import R from 'ramda'
 import template from 'babel-template'
 
 import prepareConfig from './prepare-config'
-import parseTemplateString from './parse-template-string'
 
 import Logger from './utils/logger'
 import requireModule from './utils/require-module'
@@ -118,7 +117,7 @@ export default ({ types: t }) => {
         const values = expressions.map(({ start, end }) => `/${code.slice(start, end)}/`)
 
         try {
-          const styles = parseTemplateString({
+          const styles = config.parseTemplateString({
             strings,
             values,
             from: filename,
@@ -135,9 +134,7 @@ export default ({ types: t }) => {
             Logger.error(e.message, {
               filename,
               relative: {
-                line: /^\s*\n/.test(sourceString)
-                  ? p.node.loc.start.line - 1
-                  : p.node.loc.start.line,
+                line: p.node.loc.start.line,
                 column: getIndentNumber(sourceString),
               },
             })

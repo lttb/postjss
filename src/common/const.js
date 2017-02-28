@@ -2,4 +2,8 @@ export const LOGGER = {
   ERROR_ID: 'POSTJSS__ERROR',
 }
 
-export default { LOGGER }
+export const CONFIG = {
+  extensionsRe: /\.(c|(s[ac]?))ss$/,
+  namespace: 'postjss',
+  throwError: false,
+}

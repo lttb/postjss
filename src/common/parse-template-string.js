@@ -9,6 +9,9 @@ const VAR_ESCAPED = escapeStringRegexp(VAR)
 
 const placeholderRe = new RegExp(`:?(.*?)${VAR_ESCAPED}(.*?):?`, 'g')
 
+// .classname => classname
+const classNameRe = /^\./
+
 
 export default async ({ strings, values, from, processCSS }) => {
   const data = stripIndent(strings.join(VAR)).trim().concat('\n')
@@ -34,7 +37,7 @@ export default async ({ strings, values, from, processCSS }) => {
 
   const transform = css => Object.entries(css)
     .reduce((acc, [key, value]) => {
-      const prop = getVal(key.replace(/^\./, ''))
+      const prop = getVal(key.replace(classNameRe, ''))
 
       const val = typeof value === 'object'
         ? transform(value)

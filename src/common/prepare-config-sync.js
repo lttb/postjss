@@ -1,13 +1,13 @@
 import R from 'ramda'
 import deasync from 'deasync'
 
-import { CONFIG } from '~/common/const'
+import { CONFIG } from './const'
 
-import initCSSProcessor from '~/common/init-processor'
-import initStyleGetter from '~/common/init-style-getter'
-import parseTemplateString from '~/common/parse-template-string'
+import initCSSProcessor from './init-processor'
+import initStyleGetter from './init-style-getter'
+import parseTemplateString from './parse-template-string'
 
-import PostJSSError from '~/common/utils/postjss-error'
+import PostJSSError from './utils/postjss-error'
 
 
 const init = R.compose(

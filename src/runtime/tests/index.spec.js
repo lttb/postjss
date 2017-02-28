@@ -1,7 +1,7 @@
-import { postjssAsync } from '~/runtime'
+import postjssAsync from '~/runtime/async'
 
 
-describe('PostJSS runtime', () => {
+describe('PostJSS async runtime', () => {
   it('simple test', async () => {
     const postjss = await postjssAsync
 

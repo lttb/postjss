@@ -1,20 +1,8 @@
-import parseTemplateString from '~/common/parse-template-string'
-import prepareConfigSync from '~/babel/prepare-config'
-
-import prepareConfig from './prepare-config'
+import prepareConfigSync from '~/common/prepare-config-sync'
+import initParser from './init-parser'
 
 
-export const postjssAsync = prepareConfig().then((config) => {
-  const { processCSS } = config()
-
-  return (strings, ...values) =>
-    parseTemplateString({ strings, values, processCSS })
-})
+const { processCSS } = prepareConfigSync()
 
 
-export default () => {
-  const { processCSS } = prepareConfigSync()
-
-  return (strings, ...values) =>
-    parseTemplateString({ strings, values, processCSS })
-}
+export default initParser(processCSS)

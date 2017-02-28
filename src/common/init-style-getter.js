@@ -1,5 +1,4 @@
-import LogCatcher from '~/common/utils/log-catcher'
-
+import LogCatcher from './utils/log-catcher'
 import PostJSSError from './utils/postjss-error'
 
 

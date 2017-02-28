@@ -1,15 +1,14 @@
 import R from 'ramda'
 import template from 'babel-template'
 
-import prepareConfig from './prepare-config'
+import prepareConfig from '~/common/prepare-config-sync'
+import getUniqHash from '~/common/utils/get-uniq-hash'
 
 import Logger from './utils/logger'
 import requireModule from './utils/require-module'
 import getIndentNumber from './utils/get-indent-number'
 
 import initPropsParser from './init-props-parser'
-
-import getUniqHash from './utils/get-uniq-hash'
 
 
 const argsName = getUniqHash()

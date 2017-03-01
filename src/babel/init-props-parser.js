@@ -8,12 +8,22 @@ const propsNameRe = /--\^([\w-]+)/
 
 
 export default (argsName) => {
-  const getKey = (key) => {
-    const [match] = (key.match(propsValueJSRe) || [])
+  const getVariable = (val) => {
+    const [match] = (val.match(propsValueJSRe) || [])
     if (match) {
       const res = match.slice(1, -1).replace(propsValueJSVarRe, `$1${argsName}.$2$3`)
 
       return t.identifier(res)
+    }
+
+    return null
+  }
+
+  const getKey = (key) => {
+    const variable = getVariable(key)
+
+    if (variable) {
+      return variable
     }
 
     const [, prop] = (key.match(propsNameRe) || [])
@@ -26,15 +36,13 @@ export default (argsName) => {
   }
 
   const getVal = (val) => {
-    const [match] = (val.match(propsValueJSRe) || [])
+    const variable = getVariable(val)
 
-    if (!match) {
-      return t.StringLiteral(val)
+    if (variable) {
+      return variable
     }
 
-    const res = match.slice(1, -1).replace(propsValueJSVarRe, `$1${argsName}.$2$3`)
-
-    return t.identifier(res)
+    return t.StringLiteral(val)
   }
 
   const transform = css => t.ObjectExpression(Object.entries(css)

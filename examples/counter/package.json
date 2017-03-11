@@ -17,7 +17,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "express": "^4.14.1",
-    "postjss": "^0.0.5",
+    "postjss": "^0.0.9",
     "pug": "^2.0.0-beta9",
     "ramda": "^0.23.0",
     "react": "^15.4.2",

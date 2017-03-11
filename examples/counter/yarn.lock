@@ -114,7 +114,7 @@ ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
 
-any-promise@^0.1.0, any-promise@~0.1.0:
+any-promise@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-0.1.0.tgz#830b680aa7e56f33451d4b049f3bd8044498ee27"
 
@@ -590,7 +590,7 @@ babel-register@^6.23.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
 
-babel-root-import@^4.1.5:
+babel-root-import@^4.1.5, babel-root-import@^4.1.8:
   version "4.1.8"
   resolved "https://registry.yarnpkg.com/babel-root-import/-/babel-root-import-4.1.8.tgz#135bb83986d57d6f75ba9b7772b31633e22fbdac"
   dependencies:
@@ -2266,7 +2266,7 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-globby@^6.0.0, globby@^6.1.0:
+globby@^6.0.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/globby/-/globby-6.1.0.tgz#f5a6d70e8395e21c858fb0489d64df02424d506c"
   dependencies:
@@ -3573,7 +3573,7 @@ pbkdf2@^3.0.3:
   dependencies:
     create-hmac "^1.1.2"
 
-pify@^2.0.0, pify@^2.3.0:
+pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
 
@@ -3634,7 +3634,7 @@ portfinder@^1.0.9:
     debug "^2.2.0"
     mkdirp "0.5.x"
 
-postcss-advanced-variables@1.2.2, postcss-advanced-variables@^1.2.2:
+postcss-advanced-variables@1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/postcss-advanced-variables/-/postcss-advanced-variables-1.2.2.tgz#90a6213262e66a050a368b4a9c5d4778d72dbd74"
   dependencies:
@@ -3684,7 +3684,7 @@ postcss-custom-media@^5.0.0:
   dependencies:
     postcss "^5.0.0"
 
-postcss-custom-properties@^5.0.0, postcss-custom-properties@^5.0.2:
+postcss-custom-properties@^5.0.0:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/postcss-custom-properties/-/postcss-custom-properties-5.0.2.tgz#9719d78f2da9cf9f53810aebc23d4656130aceb1"
   dependencies:
@@ -3742,17 +3742,6 @@ postcss-filter-plugins@^2.0.0:
   dependencies:
     postcss "^5.0.4"
     uniqid "^4.0.0"
-
-postcss-import@^9.1.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/postcss-import/-/postcss-import-9.1.0.tgz#95fe9876a1e79af49fbdc3589f01fe5aa7cc1e80"
-  dependencies:
-    object-assign "^4.0.1"
-    postcss "^5.0.14"
-    postcss-value-parser "^3.2.3"
-    promise-each "^2.2.0"
-    read-cache "^1.0.0"
-    resolve "^1.1.7"
 
 postcss-js@^0.2.0:
   version "0.2.0"
@@ -3884,16 +3873,6 @@ postcss-mixins@^2.1.0:
     globby "^3.0.1"
     postcss "^5.0.10"
     postcss-simple-vars "^1.0.1"
-
-postcss-mixins@^5.4.1:
-  version "5.4.1"
-  resolved "https://registry.yarnpkg.com/postcss-mixins/-/postcss-mixins-5.4.1.tgz#004c0acc54328b86bbcb3471f9eb3b52ed70f4a8"
-  dependencies:
-    globby "^6.1.0"
-    postcss "^5.2.6"
-    postcss-js "^0.2.0"
-    postcss-simple-vars "^3.0.0"
-    sugarss "^0.2.0"
 
 postcss-modules-extract-imports@^1.0.0:
   version "1.0.1"
@@ -4059,12 +4038,6 @@ postcss-simple-vars@^1.0.1:
   dependencies:
     postcss "^5.0.13"
 
-postcss-simple-vars@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-3.0.0.tgz#1fa4ccb4b7151d9f0d52fb8ea19a15c1319599d6"
-  dependencies:
-    postcss "^5.0.21"
-
 postcss-svgo@^2.1.1:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/postcss-svgo/-/postcss-svgo-2.1.6.tgz#b6df18aa613b666e133f08adb5219c2684ac108d"
@@ -4103,20 +4076,18 @@ postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postjss@^0.0.5:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/postjss/-/postjss-0.0.1.tgz#c997ab5dad1811e7ecd8b8d637df50bca9a3d71a"
+postjss@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/postjss/-/postjss-0.0.9.tgz#2ed6487c26f46f74e96f19b70116bd84fd1d6cc5"
   dependencies:
+    babel-root-import "^4.1.8"
+    babel-template "^6.23.0"
+    babel-types "^6.23.0"
     deasync "^0.1.9"
     escape-string-regexp "^1.0.5"
     postcss "^5.2.14"
-    postcss-advanced-variables "^1.2.2"
-    postcss-custom-properties "^5.0.2"
-    postcss-custom-selectors "^3.0.0"
-    postcss-import "^9.1.0"
     postcss-js "^0.3.0"
     postcss-load-config "^1.2.0"
-    postcss-mixins "^5.4.1"
     ramda "^0.23.0"
     resolve-from "^2.0.0"
     strip-indent "^2.0.0"
@@ -4181,12 +4152,6 @@ process@~0.5.1:
 progress@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/progress/-/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
-
-promise-each@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/promise-each/-/promise-each-2.2.0.tgz#3353174eff2694481037e04e01f77aa0fb6d1b60"
-  dependencies:
-    any-promise "^0.1.0"
 
 promise@^7.0.1, promise@^7.1.1:
   version "7.1.1"
@@ -4437,12 +4402,6 @@ react@^15.4.2:
     fbjs "^0.8.4"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
-
-read-cache@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/read-cache/-/read-cache-1.0.0.tgz#e664ef31161166c9751cdbe8dbcf86b5fb58f774"
-  dependencies:
-    pify "^2.3.0"
 
 read-file-stdin@^0.2.1:
   version "0.2.1"

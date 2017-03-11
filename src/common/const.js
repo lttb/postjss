@@ -6,4 +6,5 @@ export const CONFIG = {
   extensionsRe: /\.(c|(s[ac]?))ss$/,
   namespace: 'postjss',
   throwError: false,
+  modules: true,
 }

@@ -61,7 +61,7 @@ export default ({ types: t }) => {
       ImportDefaultSpecifier(p, { file }) {
         const { value } = p.parentPath.node.source
 
-        if (!config.extensionsRe.test(value)) {
+        if (!(config.extensionsRe.test(value) && config.modules)) {
           return
         }
 
@@ -87,7 +87,7 @@ export default ({ types: t }) => {
 
         const [{ value }] = args
 
-        if (!config.extensionsRe.test(value)) {
+        if (!(config.extensionsRe.test(value) && config.modules)) {
           return
         }
 

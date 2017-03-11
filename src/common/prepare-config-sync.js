@@ -30,7 +30,9 @@ export default ({
   extensionsRe = CONFIG.extensionsRe,
   namespace = CONFIG.namespace,
   throwError = CONFIG.throwError,
+  modules = CONFIG.modules,
 } = {}) => ({
+  modules,
   namespace,
   throwError,
   extensionsRe: new RegExp(extensionsRe, 'i'),

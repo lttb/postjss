@@ -19,7 +19,9 @@ export default () => init()
       extensionsRe = CONFIG.extensionsRe,
       namespace = CONFIG.namespace,
       throwError = CONFIG.throwError,
+      modules = CONFIG.modules,
     } = {}) => ({
+      modules,
       namespace,
       throwError,
       processCSS,

@@ -29,6 +29,9 @@ const StyledButton = injectSheet(getButtonStyles({
 const counterStyles = postjss`
   .counter
     padding: 0
+
+    &::before
+      content: '😱'
 `
 
 const Counter = ({ classes, counter, actions: { counterIncrement, counterDecrement } }) => (

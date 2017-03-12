@@ -72,6 +72,9 @@ const styles = postjss`
     transition: ${'opacity'} 1s
 
     color: ${color}
+
+    &::before
+      content: '😱'
 `
 ```
 
@@ -82,7 +85,10 @@ const styles = {
     left: () => 0,
     [`margin-${marginType}`]: '10px',
     transition: 'opacity 1s',
-    color: color
+    color: color,
+    '&::before': {
+      content: "'😱'"
+    }
   }
 }
 ```

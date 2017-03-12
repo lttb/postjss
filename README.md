@@ -58,6 +58,13 @@ plugins: [
 
 Please check the [counter example](https://github.com/lttb/postjss/tree/master/examples/counter)
 
+- [Separate styles example](https://github.com/lttb/postjss/blob/master/examples/counter/src/client/containers/App/index.jsx)
+- [Tagged template literal example](https://github.com/lttb/postjss/blob/master/examples/counter/src/client/components/Counter/index.jsx)
+
+
+![postjss example](https://cloud.githubusercontent.com/assets/11135392/23830255/903ece9c-0717-11e7-8d48-a0b7bf023da9.jpg)
+
+
 ### As tagged template literal
 
 Babel PostJSS plugin transforms tagged literal into the JSS-object by PostCSS, like:

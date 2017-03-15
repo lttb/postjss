@@ -168,7 +168,7 @@ You can use specific syntax for some JSS-features in your CSS:
 .app
   display: /({ visible }) => visible ? 'block' : 'none'/
 ```
-- `^variableName` - allows you to use variables passed as arguments to the style function
+- `$^variableName` - allows you to use variables passed as arguments to the style function
 ```stylus
 .app
   background-color: /^color || $color/
@@ -179,12 +179,12 @@ defaults:
   prop: /^prop || 'test'/
   selector: ''
 ```
-- `--^propertyName` - for custom property/selector names
+- `$^propertyName` - for custom property/selector names
 ```stylus
 .app
-  --^prop: 100vw
+  $^prop: 100vw
 
---^selector:
+$^selector:
   display: none
 ```
 
@@ -283,7 +283,7 @@ $color: 'green'
   --color: $color
 
 defaults:
-  prop: /^prop || 'test'/
+  prop: /$^prop || 'test'/
   selector: ''
 
 .app
@@ -299,11 +299,11 @@ defaults:
   height: 100vh
 
   color: var(--color)
-  background-color: /^value || $color/
+  background-color: /$^value || $color/
 
-  --^prop: 100vw
+  $^prop: 100vw
 
---^selector:
+$^selector:
   display: none
 
 .content

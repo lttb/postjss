@@ -1,10 +1,10 @@
 import * as t from 'babel-types'
 
 
-const propsValueJSRe = /\/.*?\//
-const propsValueJSVarRe = /(.*?)\^(\w+)(.*?)/
+const propsValueJSRe = /\/[\S\s\n]*/
+const propsValueJSVarRe = /([\S\s\n]*)\$\^(\w+)([\S\s\n]*)/
 
-const propsNameRe = /--\^([\w-]+)/
+const propsNameRe = /\$\^([\w-]+)/
 
 
 export default (argsName) => {
@@ -32,7 +32,7 @@ export default (argsName) => {
       return t.StringLiteral(key)
     }
 
-    return t.memberExpression(t.identifier(argsName), prop)
+    return t.memberExpression(t.identifier(argsName), t.identifier(prop))
   }
 
   const getVal = (val) => {

@@ -38,7 +38,7 @@ Plugin Options:
 
 - `extensionsRe`: `String` - RegExp for extensions. By default `(c|(s[ac]?))ss` - for css, sass, scss, sss
 - `namespace`: `String` - Set your custom namespace for tagged literals. By default its `postjss`
-- `throwError`: `Boolean` - Plugin will throw an error and stop transpiling, if error caused by PostCSS (eg `styleling` errors). By default `false`
+- `throwError`: `Boolean` - Plugin will throw an error and stop transpiling, if error caused by PostCSS (eg `styling` errors). By default `false`
 
 *.babelrc* example:
 
